@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SplitPayments.Models
+﻿namespace SplitPayments.Models
 {
     public class Payee
     {
-
         public string NameOnAccount { get; set; }
 
         public BankAccountType AccountType { get; set; }
