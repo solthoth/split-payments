@@ -3,16 +3,14 @@ using System.Collections.Generic;
 
 namespace SplitPayments.Data
 {
-    public class SplitPaymentsMemoryRepository
+    public class SplitPaymentsMemoryRepository : ISplitPaymentsRepository
     {
-
-        private List<PaymentTemplete> paymentTempletes;
+        private List<PaymentTemplate> paymentTempletes;
         public SplitPaymentsMemoryRepository()
         {
-           paymentTempletes = new List<PaymentTemplete>();
+           paymentTempletes = new List<PaymentTemplate>();
         }
-
-        public void Add(PaymentTemplete paymentTemplete)
+        public void Add(PaymentTemplate paymentTemplete)
         {
             paymentTempletes.Add(paymentTemplete);
         }

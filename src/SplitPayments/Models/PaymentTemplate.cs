@@ -2,7 +2,7 @@
 
 namespace SplitPayments.Models
 {
-    public class PaymentTemplete
+    public class PaymentTemplate
     {
         public string Id { get; set; }
         public List<Payee> Splits { get; set; }
