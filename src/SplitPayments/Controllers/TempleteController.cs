@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using splitpayments.Data;
+using SplitPayments.Data;
 
-namespace splitpayments.Controllers
+namespace SplitPayments.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "splitpayments": {
+    "SplitPayments": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace splitpayments.Data
+namespace SplitPayments.Data
 {
     public class SplitPaymentsMemoryRepository
     {
