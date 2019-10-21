@@ -52,12 +52,51 @@ namespace SplitPayments.UnitTests.Controllers
             //Assert - Then
             Assert.IsInstanceOf<BadRequestResult>(result);
         }
+        [Test]
+        public void Give_Nothing_WhenGetting_APaymentTemplate_Thenreturns_Badrequest()
+        {
+            var controller = CreateTemplateController();
+            var result = controller.Get(null);
+            Assert.IsInstanceOf<BadRequestResult>(result);
 
-        private TemplateController CreateTemplateController()
+        }
+        [Test]
+        public void Given_Id_WhenGetting_APaymentTemplate_Thenreturns_OKObjectResult()
+        {
+            var controller = CreateTemplateController("okay");
+            var result = controller.Get("okay");
+            Assert.IsInstanceOf<OkObjectResult>(result);
+
+        }
+        [Test]
+        public void Given_Id_WhenGetting_APaymentTemplate_Thenreturns_APaymentTemplatewithId()
+        {
+
+            var controller = CreateTemplateController("okay");
+            var result = controller.Get("okay") as OkObjectResult;
+            var paymentTemplate = result.Value as PaymentTemplate;
+            Assert.IsFalse(string.IsNullOrWhiteSpace(paymentTemplate.Id));
+            
+
+        }
+        [Test]
+        public void Given_ABadId_WhenGetting_PaymentTemplate_Thenreturns_BadRequestResult()
+        {
+            var controller = CreateTemplateController("okay");
+            var result = controller.Get("bad");
+            Assert.IsInstanceOf<BadRequestResult>(result);
+
+        }
+        private TemplateController CreateTemplateController(string id = null)
         {
             var validator = new TemplatePaymentValidation();
             var repository = new SplitPaymentsMemoryRepository();
+            if (id != null)
+            {
+                repository.Add(new PaymentTemplate { Id = id });
+            }
             return new TemplateController(repository, validator);
         }
+
     }
 }

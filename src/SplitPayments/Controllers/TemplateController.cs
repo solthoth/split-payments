@@ -28,5 +28,17 @@ namespace SplitPayments.Controllers
             }
             return BadRequest();
         }
+        [HttpGet]
+        public IActionResult Get (string id)
+        {
+            var paymentTemplate = repository.Get(id);
+            if(string.IsNullOrEmpty(paymentTemplate.Id))
+            {
+                return BadRequest();
+            }
+            return Ok(paymentTemplate);
+
+        }
+
     }
 }

@@ -14,5 +14,19 @@ namespace SplitPayments.Data
         {
             paymentTempletes.Add(paymentTemplete);
         }
+
+        public PaymentTemplate Get(string id)
+        {
+            for (int i = 0; i < paymentTempletes.Count; i++)
+            {
+                if(paymentTempletes[i].Id == id)
+                {
+                    return paymentTempletes[i];
+
+                }
+            }
+            return new PaymentTemplate();
+
+        }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SplitPayments.Data;
 using SplitPayments.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SplitPayments
 {
@@ -24,6 +25,11 @@ namespace SplitPayments
 
             services.AddSingleton<ISplitPaymentsRepository, SplitPaymentsMemoryRepository>();
             services.AddSingleton<ITemplateValidation, TemplatePaymentValidation>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Split Payments", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +44,12 @@ namespace SplitPayments
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Split Payments V1");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
