@@ -7,6 +7,7 @@ namespace SplitPayments.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
+        [HttpGet]
         public IActionResult Get(string id)
         {
 
