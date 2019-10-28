@@ -28,6 +28,7 @@ namespace SplitPayments.Controllers
             }
             return BadRequest();
         }
+
         [HttpGet]
         public IActionResult Get (string id)
         {
