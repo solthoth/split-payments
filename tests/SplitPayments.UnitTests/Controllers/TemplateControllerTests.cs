@@ -26,12 +26,15 @@ namespace SplitPayments.UnitTests.Controllers
         [TestCase("Hello     ")]
         [TestCase("      Hello")]
         [TestCase("      Hello       ")]
-        public void Given_PaymentTemplate_With_Id_When_Submitting_Then_Returns_OkResult(string id)
+        public void Given_PaymentTemplate_With_Id_And_A_Split_When_Submitting_Then_Returns_OkResult(string id)
         {
             //Arrange - Given
             var controller = CreateTemplateController();
-            var paymentTemplate = new PaymentTemplate();
-            paymentTemplate.Id = id;
+            var paymentTemplate = new PaymentTemplate
+            {
+                Id = id
+            };
+            paymentTemplate.Splits.Add(new Payee());
             //Act - When
             var result = controller.Post(paymentTemplate);
             //Assert - Then

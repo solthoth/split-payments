@@ -6,7 +6,17 @@ namespace SplitPayments.Services
     {
         public bool ValidateNewTemplate(PaymentTemplate paymentTemplate)
         {
-            return !string.IsNullOrWhiteSpace(paymentTemplate.Id) && paymentTemplate.Splits.Count>0 ;
+            return HasIdentifier(paymentTemplate) && HasPaymentSplits(paymentTemplate);
+        }
+
+        private static bool HasPaymentSplits(PaymentTemplate paymentTemplate)
+        {
+            return paymentTemplate.Splits.Count > 0;
+        }
+
+        private static bool HasIdentifier(PaymentTemplate paymentTemplate)
+        {
+            return !string.IsNullOrWhiteSpace(paymentTemplate.Id);
         }
     }
 }

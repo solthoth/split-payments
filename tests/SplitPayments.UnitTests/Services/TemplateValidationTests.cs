@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using SplitPayments.Services;
 using SplitPayments.Models;
-
+using SplitPayments.Services;
+using System;
 
 namespace SplitPayments.UnitTests.Services
 {
     [TestFixture]
-   public class TemplateValidationTests
+    public class TemplateValidationTests
     {
         [TestCase(null)]
         [TestCase("")]
@@ -34,6 +32,5 @@ namespace SplitPayments.UnitTests.Services
             Assert.IsTrue(result);
 
         }
-    
     }
 }
