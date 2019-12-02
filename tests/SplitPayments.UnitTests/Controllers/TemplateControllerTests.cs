@@ -90,6 +90,26 @@ namespace SplitPayments.UnitTests.Controllers
             Assert.IsInstanceOf<BadRequestResult>(result);
 
         }
+
+        [Test]
+        public void Given_A_PaymentTemplate_When_Submitting_An_Existing_PaymentTemplate_Then_Returns_BadRequest_With_Message()
+        {
+            var paymentTemplate = new PaymentTemplate
+            {
+                Id = "okay"
+            };
+            paymentTemplate.Splits.Add(new Payee
+            {
+                SplitType = SplitType.Percentage,
+                Value = 100
+            });
+            var controller = CreateTemplateController(paymentTemplate.Id);
+
+            var result = controller.Post(paymentTemplate);
+
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+        }
+
         private TemplateController CreateTemplateController(string id = null)
         {
             var validator = new TemplatePaymentValidation();

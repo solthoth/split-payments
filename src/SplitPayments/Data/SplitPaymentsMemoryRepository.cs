@@ -1,4 +1,5 @@
 ﻿using SplitPayments.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SplitPayments.Data
@@ -10,9 +11,22 @@ namespace SplitPayments.Data
         {
            paymentTempletes = new List<PaymentTemplate>();
         }
+
         public void Add(PaymentTemplate paymentTemplete)
         {
-            paymentTempletes.Add(paymentTemplete);
+            if (!Exists(paymentTemplete))
+            {
+                paymentTempletes.Add(paymentTemplete);
+            }
+            else 
+            {
+                throw new DuplicatePaymentTemplateException("PaymentTemplate already exists");
+            }
+        }
+
+        private bool Exists(PaymentTemplate paymentTemplete)
+        {
+            return !string.IsNullOrEmpty(Get(paymentTemplete.Id).Id);
         }
 
         public PaymentTemplate Get(string id)

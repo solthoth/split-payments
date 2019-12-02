@@ -2,6 +2,7 @@
 using SplitPayments.Data;
 using SplitPayments.Models;
 using SplitPayments.Services;
+using System;
 
 namespace SplitPayments.Controllers
 {
@@ -23,10 +24,22 @@ namespace SplitPayments.Controllers
         {
             if (validation.ValidateNewTemplate(paymentTemplate))
             {
-                repository.Add(paymentTemplate);
-                return Ok();
+                return SavePaymentTemplate(paymentTemplate);
             }
             return BadRequest();
+        }
+
+        private IActionResult SavePaymentTemplate(PaymentTemplate paymentTemplate)
+        {
+            try
+            {
+                repository.Add(paymentTemplate);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            return Ok();
         }
 
         [HttpGet]
